@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Typingmaster</title>
+	<meta charset="utf-8">
+	<link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+	<link rel="stylesheet" type="text/css" href="typingmaster.css">
+</head>
+<body>
+               <div class="heading">
+               	<h1><span>Typing </span>Master</h1>
+               	<p><b style="text-shadow: 2px 2px 4px #000000;">Test your typing speed</b></p>
+               	   
+               </div>
+                <div class="subheading">
+               	    	   <p>This is a typing test. Your goal is to duplicate the provided text, EXACTLY, in the field below. The timer starts when you start typing, and only stops when you match this text exactly. Good Luck!</p>
+               	    </div>
+               <div class="outputscreen">
+
+		                    <div class="txtarea">
+		                          <div class="outputext">
+		                           <h2 id="msg">Your Message</h2>
+		                          </div>
+                                     <br>
+		                          <div class="inputtext">
+		                          	<input id="inputword" onkeyup ="entry()">
+		                          		    
+		                          	
+		                          </div>
+		               	       
+		               	      
+
+		               	    </div>
+		               	    <div class="scorearea">
+		               	    	    
+		               	    	    
+		               	    	    <div class="timetaken">
+		               	    	    	 <div class="centr">
+		               	    	    	<p id="p1">Timetaken</p>
+		               	    	    	  <p id="timetaken">00:00:00</p>
+		               	    	    	  </div>
+		               	    	    </div>
+
+		               	    	     <div class="buttonarea">
+		               	    	     	  <div class="btncntr">
+						               	<button id="btn">Start</button>
+						               	  </div>
+						               </div>
+		               	    	    
+		               	    </div>
+               </div>
+               
+              
+
+
+<script>
+	var z=0;
+	var displaySeconds=0;
+	var displayMinutes=0;
+	var displayHours=0;
+	var seconds=0;
+	var hours=0;
+	var minutes=0;
+
+	const sent=[
+	             "Lorem Ipsum is simply dummy",
+                    
+                  "It is a long established fact that",
+
+                  "Contrary to popular belief, Lorem Ipsum",
+
+                   "There are many"
+
+	             ];
+
+const btn=document.getElementById("btn");
+var v;
+var randm;
+let sttime,endTime;
+var chopp;
+var typing;
+var totlwrd=0;
+var h=0;
+
+
+function entry()
+{    
+    
+	typing=document.getElementById("inputword").value;
+	console.log(typing);
+	v=sent[randm];
+    chopp=v.substring(0,typing.length);
+    if(chopp==typing)
+    {
+    	document.getElementById("inputword").style.borderColor="blue";
+
+    }
+    else
+    {
+    	document.getElementById("inputword").style.borderColor="red";
+    }    
+    if(h==0)
+    {
+    	z=window.setInterval(stopWatch,10);
+    	h++;
+    }    
+    if(typing==v) 
+			    {
+			    	window.clearInterval(z);
+			    	console.log("hii");
+			    }  
+}
+
+
+
+
+function displayheading()
+{        
+	
+	   randm=Math.floor(Math.random()*sent.length);
+	  
+	  document.getElementById('msg').innerHTML=sent[randm];
+	   
+	   btn.innerText="Restart";
+	      
+}
+
+
+btn.addEventListener('click',function()
+{
+	 
+	if (this.innerText=="Start") {
+		
+		displayheading();
+	}
+	else if(this.innerText=="Restart"){
+		  location.reload();
+		btn.innerText="Start";
+       
+	}
+})
+
+
+function stopWatch()
+{
+
+  seconds++;
+           
+            if(seconds/100 == 1)
+            {
+              seconds=0;
+              minutes++;
+
+                 if(minutes/60==1)
+                 {
+                  minutes=0;
+                  hours++;
+                 }
+            }
+               
+                    if(seconds <10)
+                    {
+                      displaySeconds="0"+seconds.toString();
+                    }
+                    else{
+                      displaySeconds=seconds;
+                    }
+
+                    if (minutes <10) {
+                      displayMinutes="0"+minutes.toString();
+                    }
+                    else
+                    {
+                      displayMinutes=minutes;
+                    }
+                    if (hours<10) {
+                      displayHours="0"+hours.toString();
+                    }
+                    else{
+                      displayHours=hours;
+                    }
+
+
+                document.getElementById('timetaken').innerHTML=displayHours+":"+displayMinutes+":"+displaySeconds;
+
+     
+}
+</script>                 
+</body>
+</html>
